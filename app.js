@@ -25,5 +25,10 @@ io.on('connection', socket => {
     socket.on('joinRoom', (roomId, userId) => {
         socket.join(roomId);
         socket.to(roomId).emit('userJoined', userId);
+        socket.on('message', message => {
+            console.log(message);
+            io.to(roomId).emit('createMessage', message);
+        }
+        );
     });
 });

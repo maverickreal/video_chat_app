@@ -1,9 +1,103 @@
 #videoGrid {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 video {
+  height: 300px;
   width: 400px;
-  height: 400px;
+  object-fit: cover;
+  padding: 8px;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+}
+
+.mainLeft {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainRight {
+  flex: 0.2;
+  display: flex;
+  flex-direction: column;
+  background-color: #312c31;
+  border-left: 1px solid #40404b;
+}
+
+.mainVideos {
+  flex-grow: 1;
+  background-color: rgb(66, 66, 66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.mainControls {
+  justify-content: space-between;
+  display: flex;
+  background-color: black;
+  color: aliceblue;
+  padding: 5px;
+}
+
+.mainControlsBlock {
+  display: flex;
+}
+
+.mainControlsButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+  min-width: 80px;
+  cursor: pointer;
+}
+
+.mainControlsButton i {
+  font-size: 24px;
+}
+
+.quitMeeting {
+  color: tomato;
+}
+
+.mainControlsButton:hover {
+  background-color: rgb(68, 68, 68);
+  border-radius: 5px;
+}
+
+.mainHeader {
+  color: #f7f7f7;
+  padding-top: 5px;
+  text-align: center;
+}
+
+.mainChatWindow {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.mainMessagesContainer {
+  padding: 22px 12px;
+  display: flex;
+}
+
+.mainMessageContainer input {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  color: #f3f3f3;
+}
+
+.messages {
+  color: white;
+  list-style: none;
 }
