@@ -1,0 +1,22 @@
+{
+  "name": "mzc",
+  "version": "1.0.0",
+  "description": "maverick zoom clone",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maverickreal/video_chat_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maverickreal/video_chat_app/issues"
+  },
+  "homepage": "https://github.com/maverickreal/video_chat_app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
