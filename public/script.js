@@ -1,7 +1,6 @@
-let stream = null, video = document.createElement('video');
-video.muted = true;
-
-const videoGrid = document.getElementById('videoGrid'),
+let stream = null,
+    video = document.createElement('video'),
+    videoGrid = document.getElementById('videoGrid'),
     socket = io('/'),
     roomId = '<%= roomId %>',
     peer = new Peer(undefined, {
@@ -11,7 +10,9 @@ const videoGrid = document.getElementById('videoGrid'),
     }),
     peers = {};
 
-const addstream = (video, stream) => {
+video.muted = true;
+
+const addStream = (video, stream) => {
     video.srcObject = stream;
     video.addEventListener('loadedmetadata', () => video.play());
     videoGrid.append(video);
@@ -19,12 +20,12 @@ const addstream = (video, stream) => {
 
 navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(Stream => {
     stream = Stream;
-    addstream(video, stream);
+    addStream(video, stream);
 
     peer.on('call', call => {
         call.answer(stream);
-        const video = document.createElement('video');
-        call.on('stream', userStream => addstream(video, userStream));
+        const Video = document.createElement('video');
+        call.on('stream', userStream => addStream(Video, userStream));
     });
 
     socket.on('userJoined', userId => {
@@ -32,7 +33,7 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(Stream =>
         const call = peer.call(userId, stream),
             video = document.createElement('video');
 
-        call.on('stream', userstream => addVideoStrteam(video, userstream));
+        call.on('stream', userStream => addStream(video, userStream));
 
         call.on('close', () => video.remove());
 
