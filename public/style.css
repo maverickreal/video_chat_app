@@ -15,7 +15,7 @@
 
 .mainVideos {
   flex-grow: 1;
-  background-color: black;
+  background-color: rgb(58, 58, 58);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,16 +23,16 @@
 }
 
 .mainControls {
-  background-color: #1c1e20;
+  background-color: #000000;
 }
 
 .mainRight {
-  background-color: #242324;
-  border-left: 1px solid #3d3d42;
+  background-color: #000000;
+  border-left: 1px solid #000000;
 }
 
 .mainControls {
-  color: #d2d2d2;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
   padding: 5px;
@@ -53,7 +53,7 @@
 }
 
 .mainControlsButton:hover {
-  background-color: #343434;
+  background-color: #000000;
   border-radius: 5px;
 }
 
@@ -68,7 +68,7 @@
 
 .mainHeader {
   padding-top: 5px;
-  color: #f5f5f5;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .messages {
-  color: white;
+  color: rgb(255, 255, 255);
   list-style: none;
 }
 
@@ -91,14 +91,14 @@
   flex-grow: 1;
   background-color: transparent;
   border: none;
-  color: #f5f5f5;
+  color: #ffffff;
 }
 
 .leaveMeeting {
-  color: #eb534b;
+  color: crimson;
 }
 
 .unmute,
 .stop {
-  color: #cc3b33;
+  color: tomato;
 }
