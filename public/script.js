@@ -1,10 +1,14 @@
-let videoStream, video = document.createElement('video');
+let videoStream = null, video = document.createElement('video');
 video.muted = true;
 
 const videoGrid = document.getElementById('videoGrid'),
     socket = io('http://localhost:3000'),
-    roomId = '<%= roomId %>';
-
+    roomId = '<%= roomId %>',
+    peer = new Peer(undefined, {
+        path: '/peerjs',
+        host: '/',
+        port: '3000'
+    });
 
 const addVideostream = (video, stream) => {
     video.srcObject = stream;
@@ -12,12 +16,13 @@ const addVideostream = (video, stream) => {
     videoGrid.appendChild(video);
 }
 
-socket.emit('joinRoom', roomId);
-socket.on('userJoined', () => {
-    console.log('New User!');
-});
-
 navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
     videoStream = stream;
     addVideostream(video, stream);
+});
+
+peer.on('open', id => socket.emit('joinRoom', roomId, id));
+
+socket.on('userJoined', userId => {
+    console.log(`New User! ${userId}`);
 });

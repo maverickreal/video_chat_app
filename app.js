@@ -2,8 +2,11 @@ const express = require('express'),
     app = express(),
     server = app.listen(3000),
     { v4: uuid } = require('uuid'),
-    io = require('socket.io')(server);
+    io = require('socket.io')(server),
+    { ExpressPeerServer } = require('peer'),
+    peerServer = ExpressPeerServer(server, { debug: true });
 
+app.use('/peerjs', peerServer);
 app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
@@ -19,9 +22,8 @@ app.get('/:roomId', (req, res) => {
 });
 
 io.on('connection', socket => {
-    socket.on('joinRoom', roomId => {
+    socket.on('joinRoom', (roomId, userId) => {
         socket.join(roomId);
-        socket.to(roomId).emit('userJoined');
-        console.log('Room Joined!');
+        socket.to(roomId).emit('userJoined', userId);
     });
 });
