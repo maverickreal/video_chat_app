@@ -68,7 +68,7 @@
 
 .mainHeader {
   padding-top: 5px;
-  color: #ffffff;
+  color: #23b123;
   text-align: center;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .messages {
-  color: rgb(255, 255, 255);
+  color: #fbfd9c;
   list-style: none;
 }
 
@@ -91,7 +91,7 @@
   flex-grow: 1;
   background-color: transparent;
   border: none;
-  color: #ffffff;
+  color: #74b6d6;
 }
 
 .leaveMeeting {

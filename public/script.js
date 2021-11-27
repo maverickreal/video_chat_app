@@ -18,6 +18,59 @@ const addStream = (video, stream) => {
     videoGrid.append(video);
 }
 
+const scrollToBottom = () => {
+    let d = $('.mainChatWindow');
+    d.scrollTop(d.prop('scrollHeight'));
+}
+
+const setPlayVideo = () => {
+    const html = `<i class="stop fas fa-video-slash"></i>
+    <span>Play Video</span>`;
+    document.querySelector('.mainVideoButton').innerHTML = html;
+}
+
+const setPauseVideo = () => {
+    const html = `<i class="fas fa-video"></i>
+    <span>Stop Video</span>`;
+    document.querySelector('.mainVideoButton').innerHTML = html;
+}
+
+const playPause = () => {
+    const enabled = stream.getVideoTracks()[0].enabled;
+    if (enabled) {
+        stream.getVideoTracks()[0].enabled = false;
+        setPlayVideo();
+    }
+    else {
+        stream.getVideoTracks()[0].enabled = true;
+        setPauseVideo();
+    }
+}
+
+const setMuteButton = () => {
+    const html = `<i class="fas fa-microphone"></i>
+    <span>Mute</span>`;
+    document.querySelector('.mainMuteButton').innerHTML = html;
+}
+
+const setUnmuteButton = () => {
+    const html = `<i class="unmute fas fa-microphone-slash"></i>
+    <span>Unmute</span>`;
+    document.querySelector('.mainMuteButton').innerHTML = html;
+}
+
+const muteUnmute = () => {
+    const enabled = stream.getAudioTracks()[0].enabled;
+    if (enabled) {
+        stream.getAudioTracks()[0].enabled = false;
+        setUnmuteButton();
+    }
+    else {
+        stream.getAudioTracks()[0].enabled = true;
+        setMuteButton();
+    }
+}
+
 navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(Stream => {
     stream = Stream;
     addStream(video, stream);
@@ -54,7 +107,7 @@ $('html').keydown(e => {
 
 socket.on('createMessage', msg => {
     $('ul').append(`<li class="message"><b>user</b><br/>${msg}</li>`);
-    console.log(msg);
+    scrollToBottom();
 });
 
 peer.on('open', id => socket.emit('joinRoom', roomId, id));
